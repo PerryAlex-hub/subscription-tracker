@@ -100,6 +100,7 @@ npm start
 ### Authentication Endpoints
 
 #### Sign Up
+
 - Endpoint: `POST /api/auth/sign-up`
 - Description: Register a new user
 - Request Body:
@@ -128,6 +129,7 @@ npm start
   ```
 
 #### Sign In
+
 - Endpoint: `POST /api/auth/sign-in`
 - Description: Authenticate user and get JWT token
 - Request Body:
@@ -154,6 +156,7 @@ npm start
   ```
 
 #### Sign Out
+
 - Endpoint: `POST /api/auth/sign-out`
 - Description: Sign out user (implementation in progress)
 - Authentication: Required
@@ -162,6 +165,7 @@ npm start
 ### User Endpoints
 
 #### Get All Users
+
 - Endpoint: `GET /api/users`
 - Description: Retrieve all users (public endpoint)
 - Response:
@@ -180,6 +184,7 @@ npm start
   ```
 
 #### Get User by ID
+
 - Endpoint: `GET /api/users/:id`
 - Description: Retrieve a specific user by ID
 - Authentication: Required (JWT token)
@@ -199,11 +204,13 @@ npm start
   ```
 
 #### Create User
+
 - Endpoint: `POST /api/users`
 - Description: Create a new user (placeholder endpoint)
 - Response: Status 200 with placeholder response
 
 #### Update User
+
 - Endpoint: `PUT /api/users/:id`
 - Description: Update user information (placeholder endpoint)
 - Path Parameters:
@@ -211,6 +218,7 @@ npm start
 - Response: Status 200 with placeholder response
 
 #### Delete User
+
 - Endpoint: `DELETE /api/users/:id`
 - Description: Delete a user (placeholder endpoint)
 - Path Parameters:
@@ -220,11 +228,13 @@ npm start
 ### Subscription Endpoints
 
 #### Get All Subscriptions
+
 - Endpoint: `GET /api/subscriptions`
 - Description: Get all subscriptions (placeholder endpoint)
 - Response: Status 200 with placeholder response
 
 #### Get Subscription by ID
+
 - Endpoint: `GET /api/subscriptions/:id`
 - Description: Get a specific subscription (placeholder endpoint)
 - Path Parameters:
@@ -232,6 +242,7 @@ npm start
 - Response: Status 200 with placeholder response
 
 #### Create Subscription
+
 - Endpoint: `POST /api/subscriptions`
 - Description: Create a new subscription with automated reminder workflow
 - Authentication: Required (JWT token)
@@ -272,6 +283,7 @@ npm start
   ```
 
 #### Get User Subscriptions
+
 - Endpoint: `GET /api/subscriptions/user/:id`
 - Description: Get all subscriptions for a specific user
 - Authentication: Required (JWT token)
@@ -300,6 +312,7 @@ npm start
   ```
 
 #### Update Subscription
+
 - Endpoint: `PUT /api/subscriptions/:id`
 - Description: Update subscription information (placeholder endpoint)
 - Authentication: Required (JWT token)
@@ -308,6 +321,7 @@ npm start
 - Response: Status 200 with placeholder response
 
 #### Delete Subscription
+
 - Endpoint: `DELETE /api/subscriptions/:id`
 - Description: Delete a subscription (placeholder endpoint)
 - Path Parameters:
@@ -315,6 +329,7 @@ npm start
 - Response: Status 200 with placeholder response
 
 #### Cancel Subscription
+
 - Endpoint: `PUT /api/subscriptions/:id/cancel`
 - Description: Cancel an active subscription (placeholder endpoint)
 - Path Parameters:
@@ -322,6 +337,7 @@ npm start
 - Response: Status 200 with placeholder response
 
 #### Get Upcoming Renewals
+
 - Endpoint: `GET /api/subscriptions/upcoming-renewals`
 - Description: Get subscriptions with upcoming renewal dates (placeholder endpoint)
 - Response: Status 200 with placeholder response
@@ -329,6 +345,7 @@ npm start
 ### Workflow Endpoints
 
 #### Send Subscription Reminders
+
 - Endpoint: `POST /api/workflow/subscriptions/reminder`
 - Description: Trigger automated reminder workflow for subscriptions
 - Request Body:
@@ -517,22 +534,26 @@ curl -X POST http://localhost:5500/api/subscriptions \
 ## Common Issues and Solutions
 
 ### MongoDB Connection Error
+
 - Ensure MongoDB URI in environment file is correct
 - Verify network access is allowed in MongoDB Atlas
 - Check database credentials
 
 ### JWT Token Expired
+
 - The token expires after 1 day by default
 - Request a new token by signing in again
 - Update JWT_EXPIRES_IN in environment file if needed
 
 ### Email Reminders Not Sent
+
 - Verify email configuration in environment file
 - Check Upstash QStash configuration
 - Ensure subscription renewal date is in the future
 - Check email service logs for delivery issues
 
 ### Arcjet Rate Limiting
+
 - Requests are rate-limited by Arcjet
 - Wait and retry after rate limit is exceeded
 - Contact Arcjet support to increase limits if needed
