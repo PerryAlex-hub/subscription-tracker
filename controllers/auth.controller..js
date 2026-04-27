@@ -76,52 +76,60 @@ const signIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;
 
-    if(!email){
-        res.status(400).json({ success: false, message: "Email is required" })
-        throw new Error("Email is required")
+    if (!email) {
+      res.status(400).json({ success: false, message: "Email is required" });
+      throw new Error("Email is required");
     }
 
-    if(!password){
-        res.status(400).json({ success: false, message: "Password is required" })
-        throw new Error("Password is required")
+    if (!password) {
+      res.status(400).json({ success: false, message: "Password is required" });
+      throw new Error("Password is required");
     }
 
     const user = await User.findOne({ email });
 
-    if(!user){
-        res.status(404).json({ success: false, message: "User not found" })
-        throw new Error("User not found")   
+    if (!user) {
+      res.status(404).json({ success: false, message: "User not found" });
+      throw new Error("User not found");
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
-    if(!isMatch){
-        res.status(401).json({ success: false, message: "Invalid credentials" })
-        throw new Error("Invalid credentials")   
+    if (!isMatch) {
+      res.status(401).json({ success: false, message: "Invalid credentials" });
+      throw new Error("Invalid credentials");
     }
 
     const token = jwt.sign(
-        {
-            userId: user._id
-        },
-        JWT_SECRET,
-        { expiresIn: JWT_EXPIRES_IN }
+      {
+        userId: user._id,
+      },
+      JWT_SECRET,
+      { expiresIn: JWT_EXPIRES_IN },
     );
 
     res.status(200).json({
-        success: true,
-        message: "User signed in successfully",
-        data: {
-            token,
-            user
-        }
+      success: true,
+      message: "User signed in successfully",
+      data: {
+        token,
+        user,
+      },
     });
-
   } catch (error) {
     next(error);
   }
 };
 
-const signOut = async (req, res, next) => {};
+const signOut = async (req, res, next) => {
+  try {
+    res.status(200).json({
+      success: true,
+      message: "User signed out successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export { signUp, signIn, signOut };
