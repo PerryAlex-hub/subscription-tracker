@@ -574,8 +574,4 @@ For issues, questions, or feature requests, please refer to the project reposito
 
 ## Version
 
-Current Version: 0.0.0
-
-## License
-
-This project is private and for authorized use only.
+Current Version: 0.0.1
